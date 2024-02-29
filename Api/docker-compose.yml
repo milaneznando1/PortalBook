@@ -1,0 +1,22 @@
+﻿version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: portalbooks
+      POSTGRES_USER: portalbooks
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  localstack:
+    image: atlassianlabs/localstack
+    ports:
+      - "4567:4578"
+      - "8080:8080"
+
+volumes:
+  db-data:
